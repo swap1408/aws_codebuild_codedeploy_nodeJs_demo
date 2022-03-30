@@ -5,7 +5,7 @@ const config = require('config')
 console.log(config);
 
 app.get('/', (req, res) => {
-  res.send('Test Project')
+  res.send('Code Build Pipeline')
 })
 
 app.get('/status', (req, res) => {
