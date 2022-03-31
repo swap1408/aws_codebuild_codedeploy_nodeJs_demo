@@ -5,7 +5,7 @@ const config = require('config')
 console.log(config);
 
 app.get('/', (req, res) => {
-  res.send('Code Build Pipeline')
+  res.send('aws_codebuild_codedeploy_nodeJs_demo')
 })
 
 app.get('/status', (req, res) => {
