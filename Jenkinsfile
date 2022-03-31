@@ -40,12 +40,12 @@ pipeline {
          script {
                 sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"
                 sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+                sh "docker rmi jenkin-pipeline-build-demo"
                 sh "docker stop nodeapp && docker rm nodeapp && docker rmi 255645000496.dkr.ecr.ap-south-1.amazonaws.com/jenkin-pipeline-build-demo"
                 sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 255645000496.dkr.ecr.ap-south-1.amazonaws.com"
                 sh "docker run --name nodeapp -itd -p 3000:3000 255645000496.dkr.ecr.ap-south-1.amazonaws.com/jenkin-pipeline-build-demo"
-                stage('Dangling Images') {
-                                         sh 'docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi'
-    }
+                sh 'pwd'
+                sh "./remove.sh"
                 }
            }
        }
