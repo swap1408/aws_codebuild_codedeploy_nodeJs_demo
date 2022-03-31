@@ -1,4 +1,4 @@
-# aws_codebuild_codedeploy_nodeJs_Demo_
+# aws_codebuild_codedeploy_nodeJs_Demos
 This repository contains sample codes to work with AWS 
 
 This Project build_script directory contains build related script, check buildspec.yml file I have integrated the same. 
