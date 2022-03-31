@@ -45,6 +45,7 @@ pipeline {
                 sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 255645000496.dkr.ecr.ap-south-1.amazonaws.com"
                 sh "docker run --name nodeapp -itd -p 3000:3000 255645000496.dkr.ecr.ap-south-1.amazonaws.com/jenkin-pipeline-build-demo"
                 sh 'pwd'
+                sh "chmod +x remove.sh"
                 sh "./remove.sh"
                 }
            }
