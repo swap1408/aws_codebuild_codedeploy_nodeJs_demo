@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        AWS_ACCOUNT_ID="255645000496"
-        AWS_DEFAULT_REGION="ap-south-1" 
+        AWS_ACCOUNT_ID="721703296630"
+        AWS_DEFAULT_REGION="us-east-1" 
         IMAGE_REPO_NAME="jenkin-pipeline-build-demo"
         IMAGE_TAG="latest"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
@@ -41,9 +41,9 @@ pipeline {
                 sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"
                 sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
                 sh "docker rmi jenkin-pipeline-build-demo"
-                sh "docker stop nodeapp && docker rm nodeapp && docker rmi 255645000496.dkr.ecr.ap-south-1.amazonaws.com/jenkin-pipeline-build-demo"
-                sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 255645000496.dkr.ecr.ap-south-1.amazonaws.com"
-                sh "docker run --name nodeapp -itd -p 3000:3000 255645000496.dkr.ecr.ap-south-1.amazonaws.com/jenkin-pipeline-build-demo"
+                sh "docker stop nodeapp && docker rm nodeapp && docker rmi 721703296630.dkr.ecr.ap-south-1.amazonaws.com/jenkin-pipeline-build-demo"
+                sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 721703296630.dkr.ecr.ap-south-1.amazonaws.com"
+                sh "docker run --name nodeapp -itd -p 3000:3000 721703296630.dkr.ecr.ap-south-1.amazonaws.com/jenkin-pipeline-build-demo"
                 sh 'pwd'
                 sh "chmod +x remove.sh"
                 sh "./remove.sh"
